@@ -1,7 +1,8 @@
 
 # Plataforma de Delivery de Alimentos Saudáveis
 
-[![Static Badge](https://img.shields.io/badge/-Escopo%20do%20projeto-lightgrey)](https://github.com/projetoIntegrador-aplicacaoDelivery/backend/blob/main/Escopo%20do%20Projeto%20-%20TASK2.pdf)
+[![Static Badge](https://img.shields.io/badge/Escopo%20do%20projeto-0078D6?style=for-the-badge)](https://github.com/projetoIntegrador-aplicacaoDelivery/backend/blob/main/Escopo%20do%20Projeto%20-%20TASK2.pdf)
+[![Jira](https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white)](https://dsldanielsantoslima.atlassian.net/jira/software/projects/SCRUM/boards/1)
 
 Projeto desenvolvido com Spring Boot, com CRUD completo que permite aos usuários comprar alimentos saudáveis.
 
