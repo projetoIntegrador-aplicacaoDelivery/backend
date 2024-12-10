@@ -70,4 +70,5 @@ public class Produto {
 		this.foto = foto;
 	}
 		
+	
 }
