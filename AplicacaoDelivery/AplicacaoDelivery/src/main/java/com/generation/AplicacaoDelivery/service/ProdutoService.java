@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.generation.AplicacaoDelivery.model.Categoria;
 import com.generation.AplicacaoDelivery.model.Produto;
+import com.generation.AplicacaoDelivery.repository.CategoriaRepository;
 import com.generation.AplicacaoDelivery.repository.ProdutoRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class ProdutoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+
+	@Autowired
+	private CategoriaRepository categoriaRepository;
 
 	public Optional<Produto> recomendaProduto() {
 		if (produtoRepository.count() > 0) {
@@ -34,14 +38,22 @@ public class ProdutoService {
 
 	}
 
-	public Optional<Produto> recomendaProdutoPorCategoria(Categoria categoria) {
+	public Optional<Produto> recomendaProdutoPorCategoria() {
 
-		if (categoria.getProdutos().isEmpty() != true) {
-			Produto produto = categoria.getProdutos().get(random.nextInt(categoria.getProdutos().size()));
-
-			return produtoRepository.findById(produto.getId());
+		if (categoriaRepository.count() > 0) {
+			while (true) {
+				int idCategoria = random.nextInt((int) categoriaRepository.count() + 1);
+				var optionalCategoria = categoriaRepository.findById((long) idCategoria);
+				if (optionalCategoria.isPresent()) {
+					Categoria categoria = optionalCategoria.get();
+					if (categoria.getId() != 6) {
+						Produto produto = categoria.getProdutos()
+								.get(random.nextInt(categoria.getProdutos().size() - 1));
+						return produtoRepository.findById(produto.getId());
+					}
+				}
+			}
 		}
-
 		return Optional.empty();
 	}
 
