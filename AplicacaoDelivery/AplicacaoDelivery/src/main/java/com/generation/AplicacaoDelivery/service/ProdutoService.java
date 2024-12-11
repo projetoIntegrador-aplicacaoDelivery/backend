@@ -24,7 +24,7 @@ public class ProdutoService {
 			if (produtoRepository.existsById((long) id)) {
 				return produtoRepository.findById((long) id);
 			} else {
-				while (produtoRepository.existsById((long) id) != false) {
+				while (produtoRepository.existsById((long) id) == false) {
 					id += 1;
 				}
 				return produtoRepository.findById((long) id);
@@ -36,7 +36,7 @@ public class ProdutoService {
 
 	public Optional<Produto> recomendaProdutoPorCategoria(Categoria categoria) {
 
-		if (categoria.getProdutos().size() > 0) {
+		if (categoria.getProdutos().isEmpty() != true) {
 			Produto produto = categoria.getProdutos().get(random.nextInt(categoria.getProdutos().size()));
 
 			return produtoRepository.findById(produto.getId());
