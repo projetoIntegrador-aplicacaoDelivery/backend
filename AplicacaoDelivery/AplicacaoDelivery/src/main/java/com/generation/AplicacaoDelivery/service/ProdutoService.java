@@ -46,7 +46,7 @@ public class ProdutoService {
 				var optionalCategoria = categoriaRepository.findById((long) idCategoria);
 				if (optionalCategoria.isPresent()) {
 					Categoria categoria = optionalCategoria.get();
-					if (categoria.getId() != 6) {
+					if (categoria.getId() != 6 && !categoria.getProdutos().isEmpty()) {
 						Produto produto = categoria.getProdutos()
 								.get(random.nextInt(categoria.getProdutos().size() - 1));
 						return produtoRepository.findById(produto.getId());
