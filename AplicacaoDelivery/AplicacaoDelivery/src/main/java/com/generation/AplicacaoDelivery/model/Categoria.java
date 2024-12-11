@@ -27,6 +27,17 @@ public class Categoria {
 	@Size(min = 5, max = 255, message = "O atributo 'descricao' deve ter entre 5 e 255 caracteres")
 	private String descricao;
 	
+	@NotBlank
+	private String tipo;
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
 	private List<Produto> produtos;

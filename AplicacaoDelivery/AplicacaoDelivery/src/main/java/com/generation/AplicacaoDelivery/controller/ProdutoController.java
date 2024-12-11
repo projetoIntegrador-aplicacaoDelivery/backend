@@ -79,4 +79,11 @@ public class ProdutoController {
 		return produtoService.recomendaProduto().map(produto -> ResponseEntity.ok(produto))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
+
+	@GetMapping("/recomendasaudavel/{id}")
+	public ResponseEntity<Produto> recomendaProdutoSaudavel(@PathVariable long id) {
+		return produtoService.recomendaProdutoPorCategoria(id).map(produto -> ResponseEntity.ok(produto))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+
+	}
 }
