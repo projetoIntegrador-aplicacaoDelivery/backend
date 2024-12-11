@@ -43,13 +43,17 @@ public class ProdutoService {
 		if (categoriaRepository.count() > 0) {
 			while (true) {
 				int idCategoria = random.nextInt((int) categoriaRepository.count() + 1);
-				var optionalCategoria = categoriaRepository.findById((long) idCategoria);
-				if (optionalCategoria.isPresent()) {
-					Categoria categoria = optionalCategoria.get();
-					if (categoria.getId() != 6 && !categoria.getProdutos().isEmpty()) {
-						Produto produto = categoria.getProdutos()
-								.get(random.nextInt(categoria.getProdutos().size() - 1));
-						return produtoRepository.findById(produto.getId());
+				if (idCategoria > 0) {
+					var optionalCategoria = categoriaRepository.findById((long) idCategoria);
+					if (optionalCategoria.isPresent()) {
+						Categoria categoria = optionalCategoria.get();
+						if (categoria.getId() != 6 && !categoria.getProdutos().isEmpty()) {
+							int idProduto = random.nextInt(categoria.getProdutos().size());
+							if (idProduto > 0) {
+								Produto produto = categoria.getProdutos().get(idProduto);
+								return produtoRepository.findById(produto.getId());
+							}
+						}
 					}
 				}
 			}
