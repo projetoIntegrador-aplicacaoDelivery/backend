@@ -42,7 +42,7 @@ public class ProdutoService {
 
 		if (categoriaRepository.count() > 0) {
 			while (true) {
-				int idCategoria = random.nextInt(8);
+				int idCategoria = random.nextInt(7)+1;
 				if (idCategoria > 0) {
 					var optionalCategoria = categoriaRepository.findById((long) idCategoria);
 					if (optionalCategoria.isPresent()) {
